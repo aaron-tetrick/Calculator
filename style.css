@@ -5,36 +5,73 @@
 }
 
 body {
-    border: solid 2px black;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    height: 100vh;
 
 }
+/*HEADER*/
+header {
+    background-color: rgb(232, 93, 93);
+    padding: 20px;
+    width: 100%;
+    font-size: 18px;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    font-family: "Press Start 2P", sans-serif;
+}
+
+
+/*CALCULATOR*/
 
 #result {
+    display: flex;
+    justify-content: end;
+    align-items: center;
     background-color: lightgray;
     width: 100%;
     text-align: end;
+    padding: 20px 15px;
     grid-column: span 4;
+    font-size: 25px;
+    border-radius: 10px;
+    font-family: "Press Start 2P", sans-serif;
 }
 
 .container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
-    padding: 10px;
+    padding: 30px;
+    background-color: rgb(84, 131, 163);
     border: solid 2px black;
 }
 
-.button {
-    width: 50px;
-    height: 50px;
+.clear {
+    background-color: #ff9201;
+}
+.equals {
+    background-color: rgb(232, 93, 93);
 }
 
+.button {
+    width: 80px;
+    height: 70px;
+    font-weight: bold;
+    font-size: 40px;
+    border: solid 1px black;
+}
 
-h1 {
-    color: red;
-    margin-bottom: 2rem;
+footer {
+    background-color: rgb(175, 175, 175);
+    padding: 10px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
 }
