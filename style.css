@@ -12,7 +12,9 @@ body {
     height: 100vh;
 
 }
+
 /*HEADER*/
+
 header {
     background-color: rgb(232, 93, 93);
     padding: 20px;
@@ -29,6 +31,15 @@ h1 {
 
 /*CALCULATOR*/
 
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+    padding: 30px;
+    background-color: rgb(84, 131, 163);
+    border: solid 2px black;
+}
+
 #result {
     display: flex;
     justify-content: end;
@@ -43,22 +54,6 @@ h1 {
     font-family: "Press Start 2P", sans-serif;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1em;
-    padding: 30px;
-    background-color: rgb(84, 131, 163);
-    border: solid 2px black;
-}
-
-.clear {
-    background-color: #ff9201;
-}
-.equals {
-    background-color: rgb(232, 93, 93);
-}
-
 .button {
     width: 80px;
     height: 70px;
@@ -66,6 +61,17 @@ h1 {
     font-size: 40px;
     border: solid 1px black;
 }
+
+.clear {
+    background-color: #ff9201;
+}
+
+.equals {
+    background-color: rgb(232, 93, 93);
+}
+
+
+/*FOOTER*/
 
 footer {
     background-color: rgb(175, 175, 175);
