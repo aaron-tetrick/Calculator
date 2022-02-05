@@ -35,9 +35,10 @@ h1 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
-    padding: 30px;
-    background-color: rgb(84, 131, 163);
-    border: solid 2px black;
+    padding: 40px 30px 60px 30px;
+    background-color: rgb(56, 98, 126);
+    border: solid 4px black;
+    border-radius: 15px 15px 50px 50px;
 }
 
 #result {
@@ -46,13 +47,17 @@ h1 {
     align-items: center;
     background-color: lightgray;
     width: 100%;
+    height: 75px;
+    padding-right: 10px;
     text-align: end;
-    padding: 20px 15px;
     grid-column: span 4;
     font-size: 25px;
+    border: solid 2px black;
     border-radius: 10px;
     font-family: "Press Start 2P", sans-serif;
 }
+
+
 
 .button {
     width: 80px;
@@ -60,6 +65,7 @@ h1 {
     font-weight: bold;
     font-size: 40px;
     border: solid 1px black;
+    border-radius: 10px;
 }
 
 .clear {
