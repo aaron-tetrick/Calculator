@@ -36,10 +36,21 @@ h1 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
-    padding: 60px 30px 70px 30px;
+    padding: 40px 30px 60px 30px;
     background-color: rgb(47, 79, 100);
     border: solid 4px black;
     border-radius: 15px 15px 50px 50px;
+}
+#calcatron {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: span 4;
+    font-family: "Press Start 2P";
+    font-size: 21px;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding-bottom: 0px
 }
 
 #result {
@@ -49,7 +60,8 @@ h1 {
     background-color: rgba(108, 145, 61, 0.466);
     width: 100%;
     height: 2.75em;
-    padding-right: 10px;
+    padding-right: 6px;
+    padding-left: 6px;
     text-align: end;
     grid-column: span 4;
     margin-bottom: 30px;
@@ -60,27 +72,31 @@ h1 {
 }
 
 
-
+/*CALCULATOR BUTTONS*/
 .button {
-    width: 80px;
-    height: 60px;
+    width: 75px;
+    height: 55px;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 35px;
     border: solid 1px black;
     border-radius: 5px;
     color: white;
-    background-color: rgb(146, 146, 146);
+    background-color: rgb(119, 119, 119);
+}
+
+.op {
+    background-color: rgb(68, 165, 255);
 }
 
 .button:hover {
-    background-color: rgb(201, 201, 201);
+    filter: brightness(135%);
     transition: 0.2s;
 }
-.clear {
-    background-color: #ff9201;
+#clear {
+    background-color: #dd7d00;
 }
 
-.equals {
+#equals {
     background-color: rgb(232, 93, 93);
 }
 
@@ -89,11 +105,12 @@ h1 {
 
 footer {
     background-color: rgb(175, 175, 175);
-    padding: 10px;
+    padding: 15px;
     width: 100%;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     font-family: "Press Start 2p";
     font-size: 15px;
+    border-top: solid 3px black;
 }
