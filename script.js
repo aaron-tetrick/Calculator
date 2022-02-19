@@ -1,28 +1,43 @@
-const result = document.getElementById("result");
+const display = document.getElementById("display");
 const nums = document.querySelectorAll(".num");
 const clear = document.querySelector("#clear");
-const equals = document.querySelector('#equals');
+
+
+const zero = document.getElementById('0');
+const one = document.getElementById('1');
+const two = document.getElementById('2');
+const three = document.getElementById('3');
+const four = document.getElementById('4');
+const five = document.getElementById('5');
+const six = document.getElementById('6');
+const seven = document.getElementById('7');
+const eight = document.getElementById('8');
+const nine = document.getElementById('9');
+
 const plus = document.querySelector('#plus');
 const sub = document.querySelector('#sub');
 const multi = document.querySelector('#multi');
 const div = document.querySelector('#div');
+const equals = document.querySelector('#equals');
+
+console.log(one.value, two.value, three.value, four.value, five.value, six.value, seven.value, eight.value, nine.value, zero.value);
 
 
 
-
-nums[0].addEventListener('click', () => enterNum(nums[0]))
-nums[1].addEventListener('click', () => enterNum(nums[1]))
-nums[2].addEventListener('click', () => enterNum(nums[2]))
-nums[3].addEventListener('click', () => enterNum(nums[3]))
-nums[4].addEventListener('click', () => enterNum(nums[4]))
-nums[5].addEventListener('click', () => enterNum(nums[5]))
-nums[6].addEventListener('click', () => enterNum(nums[6]))
-nums[7].addEventListener('click', () => enterNum(nums[7]))
-nums[8].addEventListener('click', () => enterNum(nums[8]))
-nums[9].addEventListener('click', () => enterNum(nums[9]))
+seven.addEventListener('click', () => enterNum(seven));
+eight.addEventListener('click', () => enterNum(eight));
+nine.addEventListener('click', () => enterNum(nine));
+four.addEventListener('click', () => enterNum(four));
+five.addEventListener('click', () => enterNum(five));
+six.addEventListener('click', () => enterNum(six));
+one.addEventListener('click', () => enterNum(one));
+two.addEventListener('click', () => enterNum(two));
+three.addEventListener('click', () => enterNum(three));
+zero.addEventListener('click', () => enterNum(zero));
 //plus.addEventListener('click', )
 clear.addEventListener('click', clearCalc);
 
+let newNum;
 
 //I need to figure out how to transfer an event handler function into another function
 
@@ -45,23 +60,48 @@ function divide(num1, num2) {
     return Number(num1) / Number(num2);
 }
 
-//Clears the Calculator
+//Clears the calculator display
 function clearCalc() {
-    result.textContent = '';
+    display.innerHTML = '';
 }
 
 //Holds the value that the user enters into calculator
-function enterNum(e) {
-    let newNum = '';
-    if (result.textContent.length < 13) {
-         newNum = result.textContent += e.textContent;
+function enterNum(e) {  
+    if (display.textContent.length < 13) {
+         newNum = display.innerHTML += e.innerHTML;
          console.log(newNum);
          return newNum;
     }
 }
 
-console.log(enterNum)
+console.log(newNum);
 
+//console.log(enterNum(e));
+
+
+//Function when pressing operator
+
+function pressOp(test) {
+    //enterNum(e);
+    console.log(enterNum())
+
+}
+
+
+
+/* 
+Hi all!
+
+I'm working on the Calculator project and am having trouble figuring out step #4. My enterNum function is returning the 'display value' in the calculator,
+but I'm unsure how to access that value now. I think it is an issue with scope or maybe the event object?? I can't figure out how to call that information 
+outside of the function.
+
+If I try to console.log it outside the function it doesn't understand what 'event' I am referring to and gives an error.
+
+Can someone point me in the direction of figuring out how to get the newNum variable out of the enterNum function, so I can use it for step #5? 
+Is it a scope issue? Does it have to do with the function's event object? Am I headed in the right direction or am I completely off course?
+
+*/
 
 //Operates the equation and displays the result (Must use operate(op, num1, num2) as a result of clicking "=")
 function operate(op, num1, num2) {
@@ -79,9 +119,6 @@ function operate(op, num1, num2) {
         console.log(subtract(num1, num2));
     }
 }
-
-
-console.log(result.textContent);
 
 
 
