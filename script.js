@@ -1,6 +1,6 @@
 const display = document.getElementById("display");
 const nums = document.querySelectorAll(".num");
-const clear = document.querySelector("#clear");
+
 
 
 const zero = document.getElementById('0');
@@ -18,24 +18,27 @@ const plus = document.querySelector('#plus');
 const sub = document.querySelector('#sub');
 const multi = document.querySelector('#multi');
 const div = document.querySelector('#div');
+const clear = document.querySelector("#clear");
 const equals = document.querySelector('#equals');
 
-console.log(one.value, two.value, three.value, four.value, five.value, six.value, seven.value, eight.value, nine.value, zero.value);
 
 
-
-seven.addEventListener('click', () => enterNum(seven));
-eight.addEventListener('click', () => enterNum(eight));
-nine.addEventListener('click', () => enterNum(nine));
-four.addEventListener('click', () => enterNum(four));
-five.addEventListener('click', () => enterNum(five));
-six.addEventListener('click', () => enterNum(six));
+zero.addEventListener('click', () => enterNum(zero));
 one.addEventListener('click', () => enterNum(one));
 two.addEventListener('click', () => enterNum(two));
 three.addEventListener('click', () => enterNum(three));
-zero.addEventListener('click', () => enterNum(zero));
-//plus.addEventListener('click', )
+four.addEventListener('click', () => enterNum(four));
+five.addEventListener('click', () => enterNum(five));
+six.addEventListener('click', () => enterNum(six));
+seven.addEventListener('click', () => enterNum(seven));
+eight.addEventListener('click', () => enterNum(eight));
+nine.addEventListener('click', () => enterNum(nine));
+
+
+plus.addEventListener('click', op);
 clear.addEventListener('click', clearCalc);
+
+equals.addEventListener('click', () => operate('+', 7, display.innerHTML))
 
 let newNum;
 
@@ -66,27 +69,23 @@ function clearCalc() {
 }
 
 //Holds the value that the user enters into calculator
-function enterNum(e) {  
+function enterNum(num) {  
     if (display.textContent.length < 13) {
-         newNum = display.innerHTML += e.innerHTML;
+         newNum = display.innerHTML += num.innerHTML;
          console.log(newNum);
          return newNum;
     }
 }
 
-console.log(newNum);
-
-//console.log(enterNum(e));
-
 
 //Function when pressing operator
-
-function pressOp(test) {
-    //enterNum(e);
-    console.log(enterNum())
-
+function op() {
+    newNum = display.innerHTML
+    console.log(newNum);
+    return newNum
 }
 
+console.log(() => op());
 
 
 /* 
@@ -104,10 +103,14 @@ Is it a scope issue? Does it have to do with the function's event object? Am I h
 */
 
 //Operates the equation and displays the result (Must use operate(op, num1, num2) as a result of clicking "=")
+
+
 function operate(op, num1, num2) {
-    console.log(op, num1, num2);
+    //console.log(op, num1, num2);
     if (op === '+') {
-    console.log(add(num1, num2))
+    result = add(num1, num2);
+    console.log(result)
+    display.innerHTML = result;
     }
     else if (op = '-') {
         console.log(subtract(num1, num2));
