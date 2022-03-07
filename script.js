@@ -35,12 +35,18 @@ eight.addEventListener('click', () => enterNum(eight));
 nine.addEventListener('click', () => enterNum(nine));
 
 
-plus.addEventListener('click', op);
+plus.addEventListener('click', () => op('+'));
+sub.addEventListener('click', () => op('-'));
+multi.addEventListener('click', () => op('*'));
+div.addEventListener('click', () => op('/'));
 clear.addEventListener('click', clearCalc);
+equals.addEventListener('click', () => operate(operatorType, firstNum, display.innerHTML))
+ //equals.aEL('click', () => operate(Variable for an operator, Stored variable after clciking an operator, the current display text (display.innerHTML)))
 
-equals.addEventListener('click', () => operate('+', 7, display.innerHTML))
 
-let newNum;
+let firstNum;
+let secondNum
+let operatorType;
 
 //I need to figure out how to transfer an event handler function into another function
 
@@ -66,41 +72,28 @@ function divide(num1, num2) {
 //Clears the calculator display
 function clearCalc() {
     display.innerHTML = '';
+    firstNum = 0;
 }
 
 //Holds the value that the user enters into calculator
-function enterNum(num) {  
+function enterNum(num) {
     if (display.textContent.length < 13) {
-         newNum = display.innerHTML += num.innerHTML;
-         console.log(newNum);
-         return newNum;
-    }
+        console.log('HI');
+        display.innerHTML += num.innerHTML;
+        console.log(operatorType);
+    }  
 }
 
 
-//Function when pressing operator
-function op() {
-    newNum = display.innerHTML
-    console.log(newNum);
-    return newNum
+
+//Maybe include an event object with op(), then put e.target.innerText in a variable and that's how to get a variable to put through the operate function.)
+function op(type) {
+    firstNum = display.innerHTML
+    operatorType = type;
+    display.innerHTML = ''
 }
 
-console.log(() => op());
 
-
-/* 
-Hi all!
-
-I'm working on the Calculator project and am having trouble figuring out step #4. My enterNum function is returning the 'display value' in the calculator,
-but I'm unsure how to access that value now. I think it is an issue with scope or maybe the event object?? I can't figure out how to call that information 
-outside of the function.
-
-If I try to console.log it outside the function it doesn't understand what 'event' I am referring to and gives an error.
-
-Can someone point me in the direction of figuring out how to get the newNum variable out of the enterNum function, so I can use it for step #5? 
-Is it a scope issue? Does it have to do with the function's event object? Am I headed in the right direction or am I completely off course?
-
-*/
 
 //Operates the equation and displays the result (Must use operate(op, num1, num2) as a result of clicking "=")
 
@@ -109,18 +102,22 @@ function operate(op, num1, num2) {
     //console.log(op, num1, num2);
     if (op === '+') {
     result = add(num1, num2);
-    console.log(result)
-    display.innerHTML = result;
+    console.log(op, num1, num2, result)
     }
-    else if (op = '-') {
-        console.log(subtract(num1, num2));
+    else if (op === '-') {
+        result = subtract(num1, num2);
+        console.log(op, num1, num2, result)
     }
-    else if (op = '*') {
-        console.log(subtract(num1, num2));
+    else if (op === '*') {
+        result = multiply(num1, num2);
+        console.log(op, num1, num2, result)
     }
-    else if (op = '/') {
-        console.log(subtract(num1, num2));
+    else if (op === '/') {
+        result = divide(num1, num2);
+        result = parseFloat(result.toFixed(2));
+        console.log(op, num1, num2, result)
     }
+    display.innerHTML = result
 }
 
 
