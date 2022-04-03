@@ -1,4 +1,4 @@
-//Display Selector
+//Display and Buttons Selector
 const display = document.getElementById("display");
 
 //Number button Selectors
@@ -22,7 +22,6 @@ const div = document.querySelector('#div');
 const clear = document.querySelector("#clear");
 const equals = document.querySelector('#equals');
 
-console.log(operators);
 
 //Number button Event Listeners
 zero.addEventListener('click', () => enterNum(zero.value));
@@ -88,11 +87,14 @@ function clearCalc() {
 
 //Changes the display
 function changeDisplay() {
-    if (display.innerText.length < 13) {
-        display.innerText = displayValue;
+    if (displayValue.length > 13) {
+        console.log(typeof(displayValue, "HIIII"));
+        console.log(display.innerText.length);
+        display.innerText = Number(displayValue).toExponential(4);
     } else {
-        console.log(typeof(displayValue));
-        display.innerText = Number(displayValue).toExponential();
+        display.innerText = displayValue;
+        console.log(display.innerText.length, typeof(displayValue));
+        
     }
 }
 //On first click-- Enter a number and it is displayed on the calculator --CHECK--
@@ -106,64 +108,56 @@ function enterNum(num) {
         clearCalc();
         displayValue = num;
         changeDisplay();
+    } else if (firstNum === null && secondNum === null && operatorType !== null) {
+        displayValue = num;
+        operatorType = null;
+        changeDisplay();
     } else if (firstNum === null && secondNum === null) {
-        if (displayValue === '0') {
+        if (displayValue === '0' || displayValue === '' && num === '0') {
             num = '';
         } else 
             displayValue += num;
-            console.log(`firstNum = ${firstNum}`, `secondNum = ${secondNum}`);
             changeDisplay();
-    } else if (firstNum !== null && secondNum === null) {
+    } else if (firstNum === null && secondNum !== null) {
+        displayValue = num;
+        changeDisplay();
+        } else if (firstNum !== null && secondNum === null) {
          displayValue = num;
          secondNum = displayValue
-         console.log(`firstNum = ${firstNum}`, `secondNum = ${secondNum}`);
          changeDisplay();
      } else if (firstNum !== null && secondNum !== null) {
+        if (displayValue === '0' && num === '0') {
+            num = '';
+        } else 
          displayValue += num;
          secondNum = displayValue;
-         console.log(`firstNum = ${firstNum}`, `secondNum = ${secondNum}`);
          changeDisplay();
-     } else if (firstNum === null && secondNum !== null) {
-         displayValue = num;
-         firstNum = secondNum;
-         secondNum = displayValue;
-         console.log(`firstNum = ${firstNum}`, `secondNum = ${secondNum}`);
-         console.log("Please work");
-     }
+         firstNum === null
+     } 
 }
 
-//If both firstNum and secondNum have values the last else if statement is run above.
-//If displayValue += num then stringing together several operators concatenates the operands. 
-//If displayValue = num then the secondNum won't concatenate together and the pressed number will replace the current number in the display.
-
-
-
 //Stores the value of the first number of the equation after pressing an operator
-function op(type) {
-    if (firstNum === null && secondNum === null) {
+function op(type) { 
+    if (firstNum === null && secondNum === null && displayValue !== '') {
         operatorType = type;
-        firstNum = displayValue
+        firstNum = display.innerHTML;
         displayValue = '';
-        console.log(`firstNum = ${firstNum}`, `secondNum = ${secondNum}`);
     } else if (firstNum !== null && secondNum !== null) {
-        console.log(operatorType, firstNum, secondNum);
         operate(operatorType, firstNum, secondNum);
-        console.log(`I am the result: ${result}`)
         firstNum = result;
-        //secondNum = displayValue;
+        secondNum = null;
         operatorType = type;
-        console.log("You have pressed a second operator")
-        console.log(`firstNum = ${firstNum}`, `secondNum = ${secondNum}`);
-    } else if (firstNum === null && secondNum !== null) {
-        console.log('Jesus work please');
-        console.log(`firstNum = ${firstNum}`, `secondNum = ${secondNum}`);
+        firstNum === null;
     }
+
 }
 
 
 //Operates the equation and displays the result (Must use operate(op, num1, num2) as a result of clicking "=")
-function operate(op, num1, num2) {   
-    if (op === '+') {
+function operate(op, num1, num2) {
+    if (num1 === null || num2 === null) {
+        result = num1;
+    } else if (op === '+') {
         result = add(num1, num2);
     }
     else if (op === '-') {
@@ -174,20 +168,14 @@ function operate(op, num1, num2) {
     }
     else if (op === '/') {
         result = divide(num1, num2);
-        if (num2 == 0) {
-            result = "Nice try, pal"
-            console.log('ZERO')
+        if (num2 === '0') {
+            result = "Nice try, pal";
         } else result = parseFloat(result.toFixed(2));
     }
-    displayValue = result;
-    console.log(`${num1} ${op} ${num2} = ${result}`);
-    console.log(firstNum, secondNum, operatorType)
-    //displayValue = 0;
+    displayValue = result 
     firstNum = null;
     secondNum = null;
-    //operatorType = null;
     changeDisplay();
-    console.log(`${num1} ${op} ${num2} = ${result}`);
 }
 
 
