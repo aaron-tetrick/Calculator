@@ -36,10 +36,6 @@ eight.addEventListener('click', () => enterNum(eight.value));
 nine.addEventListener('click', () => enterNum(nine.value));
 
 //Non-number button Event Listeners
-operators[0].addEventListener('click', pressedOp);
-operators[1].addEventListener('click', (e) => pressedOp);
-operators[2].addEventListener('click', (e) => pressedOp);
-operators[3].addEventListener('click', (e) => pressedOp);
 plus.addEventListener('click', () => op('+'));
 sub.addEventListener('click', () => op('-'));
 multi.addEventListener('click', () => op('*'));
@@ -47,7 +43,7 @@ div.addEventListener('click', () => op('/'));
 clear.addEventListener('click', clearCalc);
 equals.addEventListener('click', () => operate(operatorType, firstNum, secondNum));
 
-
+//Declare various variables
 let firstNum = null;
 let secondNum = null;
 let operatorType = null;
@@ -55,9 +51,35 @@ let displayValue = '';
 
 changeDisplay();
 
-function pressedOp(e) {
-    e.target.style.backgroundColor = "red";
-}
+//OPERATORS CHANGE COLOR WHEN PRESSED (WORK IN PROGRESS)
+// function pressedOp(type) {
+//     if (type === 'div') {
+//         div.classList.add('pressed');
+//         multi.classList.remove('pressed')
+//         sub.classList.remove('pressed');
+//         plus.classList.remove('pressed');
+//     } else if (type === 'multi') {
+//         div.classList.remove('pressed');
+//         multi.classList.add('pressed');
+//         sub.classList.remove('pressed');
+//         plus.classList.remove('pressed');
+//     } else if (type === 'sub') {
+//         div.classList.remove('pressed');
+//         multi.classList.remove('pressed');
+//         sub.classList.add('pressed');
+//         plus.classList.remove('pressed');
+//     } else if (type === 'add') {
+//         div.classList.remove('pressed');
+//         multi.classList.remove('pressed');
+//         sub.classList.remove('pressed');
+//         plus.classList.add('pressed');
+//     } else {
+//         div.classList.remove('pressed');
+//         multi.classList.remove('pressed');
+//         sub.classList.remove('pressed');
+//         plus.classList.remove('pressed');
+//     }
+// }
 
 //Various math operator functions
 function add(num1, num2) {
@@ -82,25 +104,18 @@ function clearCalc() {
     firstNum = null;
     secondNum = null;
     operatorType = null;
+    //pressedOp('none')
     changeDisplay();
 }
 
 //Changes the display
 function changeDisplay() {
     if (displayValue.length > 13) {
-        console.log(typeof(displayValue, "HIIII"));
-        console.log(display.innerText.length);
         display.innerText = Number(displayValue).toExponential(4);
     } else {
         display.innerText = displayValue;
-        console.log(display.innerText.length, typeof(displayValue));
-        
     }
 }
-//On first click-- Enter a number and it is displayed on the calculator --CHECK--
-//On second click (Clicks an operator)--If firstNum = null then firstNum = displayValue, operatorType = The operator that was clicked 
-//On third click (Would be on enterNum function) -- If firstNum != null then replace the current number in the display with a new value (secondNum) --CHECK--
-//On fourth click (Clicks the equals)-- secondNum = displayValue, operate(op that was selected, firstNum, secondNum); 
 
 //Enters an inputted number into the calculator display
 function enterNum(num) {
@@ -132,7 +147,6 @@ function enterNum(num) {
          displayValue += num;
          secondNum = displayValue;
          changeDisplay();
-         firstNum === null
      } 
 }
 
@@ -147,16 +161,14 @@ function op(type) {
         firstNum = result;
         secondNum = null;
         operatorType = type;
-        firstNum === null;
     }
 
 }
 
-
-//Operates the equation and displays the result (Must use operate(op, num1, num2) as a result of clicking "=")
+//Operates the equation and displays the result
 function operate(op, num1, num2) {
     if (num1 === null || num2 === null) {
-        result = num1;
+        result = display.innerText;
     } else if (op === '+') {
         result = add(num1, num2);
     }
@@ -175,12 +187,6 @@ function operate(op, num1, num2) {
     displayValue = result 
     firstNum = null;
     secondNum = null;
+    //pressedOp('none')
     changeDisplay();
 }
-
-
-
-//After I press an operator I want the next number I press to be on the display. (Right now, the number gets concatenated)
-//Figure out how to get display.innerText into a variable
-
-//I don't want the decimals limited to 2 places. I want them to extend to the end of the calculator.

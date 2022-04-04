@@ -2,7 +2,6 @@
 * {
     box-sizing: border-box;
     margin: 0;
-
 }
 
 body {
@@ -11,7 +10,6 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 100vh;
-
 }
 
 /*HEADER*/
@@ -100,6 +98,10 @@ h1 {
 
 #equals {
     background-color: rgb(232, 93, 93);
+}
+
+.pressed {
+    background-color: red;
 }
 
 
